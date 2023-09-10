@@ -15,4 +15,6 @@ The Olympus M1 Mark II suffers from a peculiar problem where setting it to recor
 Python and Go implementations are presented. The exe file is compiled from the Go source code. No flags used.
 >go build PreviewExtractorORF.go
 
-Python's global interpreter lock does not interfere with using a multicore processor in this case. This is because the ThreadPool can launch multiple instances of exiftool, which run independently. ThreadPool and ProcessPool provide similar performance here.
+Multiprocess is typically used to allow for parallel computing despite Python's global interpreter lock. In this case, async/await or ThreadPool can run this operation in parallel because the multiple exiftool instances that run independently are doing the heavy lifting. ProcessPool code is used here to demonstrate how to typically utilize a multicore processor using Python.
+
+Go's coroutine system works innately for parallelism.
