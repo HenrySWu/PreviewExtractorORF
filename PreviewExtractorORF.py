@@ -4,7 +4,7 @@
 # After running script, JPEGs will appear in JPEG folder
 
 import os
-from multiprocessing.pool import ThreadPool
+from multiprocessing import Pool
 
 
 def exiftoolcall(command1, command2):
@@ -19,8 +19,7 @@ if __name__ == '__main__':  # required for multiprocessing pool, errors out with
     exit()
   if not os.path.exists("JPEG"):
     os.mkdir("JPEG")
-  # pool = multiprocessing.Pool()  # spin up worker processes
-  pool = ThreadPool()
+  pool = Pool()  # spin up worker processes
   fileslist = os.listdir("RAW")
   for file in fileslist:
     if os.path.isdir("RAW/" + file):  # isdir requires full path from current directory
