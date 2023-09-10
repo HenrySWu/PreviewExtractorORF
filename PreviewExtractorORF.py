@@ -4,7 +4,7 @@
 # After running script, JPEGs will appear in JPEG folder
 
 import os
-from multiprocessing import Pool
+from multiprocessing.pool import ThreadPool
 
 
 def exiftoolcall(command1, command2):
@@ -19,7 +19,8 @@ if __name__ == '__main__':  # required for multiprocessing pool, errors out with
     exit()
   if not os.path.exists("JPEG"):
     os.mkdir("JPEG")
-  pool = Pool()  # spin up worker processes
+  # pool = multiprocessing.Pool()  # spin up worker processes
+  pool = ThreadPool()
   fileslist = os.listdir("RAW")
   for file in fileslist:
     if os.path.isdir("RAW/" + file):  # isdir requires full path from current directory
@@ -29,6 +30,6 @@ if __name__ == '__main__':  # required for multiprocessing pool, errors out with
     cmdstring1 += " > JPEG/" + file[:-3] + "jpg"
     cmdstring2 = "exiftool.exe -overwrite_original -TagsFromFile RAW/" + file
     cmdstring2 += " -exif:all JPEG/" + file[:-3] + "jpg"
-    res = pool.apply_async(exiftoolcall, (cmdstring1, cmdstring2))  # send work to process pool
+    res = pool.apply_async(exiftoolcall, (cmdstring1, cmdstring2))  # send work to pool
   pool.close()  # required before calling pool.join()
   pool.join()  # wait for all workers to finish before moving on
