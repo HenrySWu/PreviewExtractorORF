@@ -25,12 +25,12 @@ func main() {
 		fmt.Println(err)
 		os.Exit(1)
 	}
-	os.Mkdir("JPEG", 0777)
 	err = os.Mkdir("RAW", 0777)
 	if err == nil {
 		fmt.Println("No RAW folder found, one has been made")
 		os.Exit(1)
 	}
+	os.Mkdir("JPEG", 0777)
 	directory.Close()
 
 	directory, err = os.Open("./RAW")
