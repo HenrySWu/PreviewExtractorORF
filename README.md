@@ -18,3 +18,5 @@ Python and Go implementations are presented. The exe file is compiled from the G
 Multiprocess is typically used to allow for parallel computing despite Python's global interpreter lock. In this case, async/await or ThreadPool can run this operation in parallel because the multiple exiftool instances that run independently are doing the heavy lifting. ProcessPool code is used here to demonstrate how to typically utilize a multicore processor using Python.
 
 Go's coroutine system works innately for parallelism.
+
+Rust files are the Cargo.toml and the files in the src folder. The main.rs file uses tokio::spawn, which spawns multiple independent threads to execute tasks. The use_spawn_blocking.rs file uses tokio::tasks:spawn_blocking to utilize non async functions.
