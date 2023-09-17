@@ -1,4 +1,8 @@
-// uses the tokio::spawn to use multiple cores
+// Extract the Preview JPEGs contained inside .ORF RAW files
+// Place copy of exiftools next to exe file
+// Place RAWs inside of RAW folder
+// After running script, JPEGs will appear in JPEG folder
+// Uses the tokio::spawn to use multiple cores
 
 use std::path::Path;
 use std::fs;
