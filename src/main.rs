@@ -41,11 +41,11 @@ async fn main() {
     let file = file.unwrap().path();
     if !file.is_dir() {
       let mut string1: String = "exiftool.exe -b -PreviewImage ".to_string();
-      let mut string2: String = "exiftool.exe -overwrite_original -TagsFromFile ".to_string();
       string1.push_str(&file.display().to_string());
       string1.push_str(" > JPEG/");
       string1.push_str(&file.display().to_string()[6..file.display().to_string().len()-3]);
       string1.push_str("jpg");
+      let mut string2: String = "exiftool.exe -overwrite_original -TagsFromFile ".to_string();
       string2.push_str(&file.display().to_string());
       string2.push_str(" -exif:all JPEG/");
       string2.push_str(&file.display().to_string()[6..file.display().to_string().len()-3]);
